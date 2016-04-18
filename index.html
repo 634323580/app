@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="root" class="container">
+            <div class="m-artcal-action">
+                <div class="atrical-action-mid" id="action_mid"></div>
+            </div>
+            <!--顶部栏-->
+            <div id="top-nav" class="top-nav" style="display:none;">
+                <div class="icon-back"></div>
+                <div class="nav-title">返回书架</div>
+            </div>
+            <!--文章标题-->
+            <div id="fiction_title"></div>
+            <!--文章内容容器-->
+            <div id="fiction_container" class="m-read-content">
+                <h4>又是连中三元的新科状元</h4>
+                <p>
+                    他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。
+                </p>
+                <p>
+                    他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。
+                </p>
+                <p>
+                    他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。
+                </p>
+                <p>
+                    他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。
+                </p>
+                <p>
+                    他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。
+                </p>
+            </div>
+            <!--边栏-->
+            <div class="m-button-bar">
+                <!--切换按钮-->
+                <ul class="u-tab">
+                    <li id="prev_button">上一章</li>
+                    <li id="next_button">下一章</li>
+                </ul>
+            </div>
+            <!--底部栏-->
+                <div class="nav-pannel" id="font-content" style="display:none;">
+                <div class="child-mod nav-pannel-top">
+                    <span>字号</span>
+                    <button id="large-font" class="font-size-button">大</button>
+                    <button id="samll-font" class="font-size-button">小</button>
+                </div>
+                <div class="child-mod nav-pannel-bottom">
+                    <span>背景</span>
+                    <ul id="backgroundCOlor">
+                        <li class="on" data-color="#F7EEE5" data-font="#555"><b></b></li>
+                        <li data-color="#E9DFC7" data-font="#555"><b></b></li>
+                        <li data-color="#A4A4A4" data-font="#555"><b></b></li>
+                        <li data-color="#CDEFCE" data-font="#555"><b></b></li>
+                        <li data-color="#283548" data-font="#7685a2"><b></b></li>
+                        <li data-color="#0F1410" data-font="#505651"><b></b></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-nav" style="display:none;">
+                <div class="catalog">
+                    <b class="icon"></b>
+                    <h3>目录</h3>
+                </div>
+                <div class="font-box j-font-box">
+                    <b class="icon"></b>
+                    <h3>字体</h3>
+                </div>
+                <div class="day-night">
+                    <b class="icon"></b>
+                    <h3>夜间</h3>
+                </div>
+            </div>
+        </div>
+        <script src="lib/zepto.min.js"></script>
+        <script>
+            window.jQuery = $;
+        </script>
+        <script src="js/jquery.base64.js"></script>
+        <script src="js/jquery.jsonp.js"></script>
+
+        <script>
+          (function(){
+              var Util = (function(){
+                    var prefix = 'ficiton_reader_';
+                    var StorageGetter = function(key) {
+                        return localStorage.getItem(prefix + key);
+                    }
+                    var StorageSetter = function(key, val) {
+                        return localStorage.setItem(prefix + key, val);
+                    }
+                  return {
+                      StorageGetter:StorageGetter,
+                      StorageSetter:StorageSetter
+                  }
+              })();
+              var Dom = {
+                  top_nav:$('#top-nav'),
+                  font_content:$('#font-content'),
+                  bottom_nav:$('.bottom-nav'),
+                  j_font_box:$('.j-font-box'),
+                  j_font_box_child:$('.j-font-box').children('.icon'),
+                  root:$('#root'),
+                  bcgLI:$('#backgroundCOlor li')
+                  
+              }
+              var Win = $(window);
+              var Doc = $(document);
+              var fiction_container = $('#fiction_container');
+              var defaultFontSize = Util.StorageGetter('font_size');
+              //白天黑夜开关
+              var NightMode = true;
+              //背景&字体颜色
+              var font_color;
+              var background_color;
+                 
+              if(!defaultFontSize){
+                  defaultFontSize = 14;
+              }
+               fiction_container.css('font-size',defaultFontSize+'px');
+               
+           var NightModeFnLen = Dom.bcgLI.size()-1;
+            function NightModeFn(obj){
+               Dom.bcgLI.removeClass('on');
+               obj.addClass('on');
+               font_color = obj.attr('data-font');
+               background_color = obj.attr('data-color');
+               //字体颜色
+               Util.StorageSetter('font_color',font_color);
+               //背景颜色
+               Util.StorageSetter('background_color',background_color);
+               //存储用户选择颜色的对象索引
+               Util.StorageSetter('obj_index',obj.index())
+               Dom.root.css({
+                   'color':font_color,
+                    'backgroundColor':background_color
+               })
+               if(obj.index() != NightModeFnLen){
+                   $('.day-night').children('.icon').removeClass('icons');
+                   $('.day-night').children('h3').text('夜间');
+                    NightMode=true;
+               }else if(obj.index() == NightModeFnLen){
+                     $('.day-night').children('.icon').addClass('icons');
+                      $('.day-night').children('h3').text('白天');
+                       NightMode=false;
+               }
+            }
+               if(Util.StorageGetter('obj_index')){
+                   NightModeFn(Dom.bcgLI.eq(parseInt(Util.StorageGetter('obj_index'))))
+               }
+              
+              
+                function main(){
+                    //todo 整个项目的入口函数
+                    EventHanlder();
+                    
+                }
+                
+                function ReaderModel(){
+                    //todo实现和阅读器相关数据交互的方法
+                }
+                
+                function ReaderBaseFrame(){
+                    //todo渲染基本的UI结构
+                }
+                
+                function EventHanlder(){
+                    //交互的事件绑定
+                    $('#action_mid').click(function(){
+                        if(Dom.top_nav.css('display')=='none'){
+                            Dom.top_nav.show();
+                            Dom.bottom_nav.show();
+                        }else{
+                            Dom.top_nav.hide();
+                            Dom.font_content.hide();
+                            Dom.bottom_nav.hide();
+                            Dom.j_font_box_child.removeClass('icons');
+                        }
+                    })
+                    $('.j-font-box').click(function(){
+                        if(Dom.font_content.css('display')=='none'){
+                            Dom.font_content.show();
+                            Dom.j_font_box_child.addClass('icons');
+                        }else{
+                            Dom.font_content.hide();
+                            Dom.j_font_box_child.removeClass('icons');
+                        }
+                    })
+
+                    $('#large-font').click(function(){
+                        if(defaultFontSize>20){
+                            return;
+                        }
+                        ++defaultFontSize;
+                        fiction_container.css('font-size',defaultFontSize);
+                        Util.StorageSetter('font_size',defaultFontSize);
+                    });
+                    $('#samll-font').click(function(){
+                        if(defaultFontSize<12){
+                            return;
+                        }
+                        --defaultFontSize;
+                        fiction_container.css('font-size',defaultFontSize);
+                        Util.StorageSetter('font_size',defaultFontSize);
+                    });
+                    Dom.bcgLI.click(function(){
+                        NightModeFn($(this))
+                    })
+                    $('.day-night').click(function(){
+                        if(NightMode){
+                             NightModeFn( Dom.bcgLI.eq(NightModeFnLen));
+                        }else{
+                             NightModeFn( Dom.bcgLI.eq(0));
+                        }
+                    })
+                    Win.scroll(function(){
+                        Dom.top_nav.hide();
+                        Dom.bottom_nav.hide();
+                        Dom.font_content.hide();
+                        Dom.j_font_box_child.removeClass('icons');
+                        Util.StorageSetter('font_size',defaultFontSize);
+                    })
+                }
+                
+                main();
+                
+          })();
+        </script>
+    </body>
+</html>
