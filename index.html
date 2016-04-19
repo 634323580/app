@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+    <div id="load" style="position:fixed;left:50%;top:50%;z-index:9999999;">load......</div>
         <div id="root" class="container">
             <div class="m-artcal-action">
                 <div class="atrical-action-mid" id="action_mid"></div>
@@ -97,6 +98,7 @@
                           var json = decodeURIComponent(escape(data));
                           callback(json);
                           $('#ajxash').show();
+                          $('#load').hide();
 
                         }
                       });
@@ -215,6 +217,7 @@
                     }
 
                     var getCurChapterContent = function(chapter_id,callback){
+                      $('#load').show();
                       $.get('data/data' + chapter_id + '.json',function(data){
                         //load
                           if(data.result == 0){
