@@ -1,253 +1,293 @@
 <!DOCTYPE html>
 <html ng-app="app">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
-        <meta name="format-detection" content="telephone=no">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <div id="root" class="container">
-            <div class="m-artcal-action">
-                <div class="atrical-action-mid" id="action_mid"></div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="root" class="container">
+        <div class="m-artcal-action">
+            <div class="atrical-action-mid" id="action_mid"></div>
+        </div>
+        <!--顶部栏-->
+        <div id="top-nav" class="top-nav" style="display:none;">
+            <div class="icon-back"></div>
+            <div class="nav-title">返回书架</div>
+        </div>
+        <!--文章标题-->
+        <div id="fiction_title"></div>
+        <!--文章内容容器-->
+        <div id="fiction_container" class="m-read-content">
+        </div>
+        <!--边栏-->
+        <div class="m-button-bar">
+            <!--切换按钮-->
+            <ul class="u-tab">
+                <li id="prev_button">上一章</li>
+                <li id="next_button">下一章</li>
+            </ul>
+        </div>
+        <!--底部栏-->
+        <div class="nav-pannel" id="font-content" style="display:none;">
+            <div class="child-mod nav-pannel-top">
+                <span>字号</span>
+                <button id="large-font" class="font-size-button">大</button>
+                <button id="samll-font" class="font-size-button">小</button>
             </div>
-            <!--顶部栏-->
-            <div id="top-nav" class="top-nav" style="display:none;">
-                <div class="icon-back"></div>
-                <div class="nav-title">返回书架</div>
-            </div>
-            <!--文章标题-->
-            <div id="fiction_title"></div>
-            <!--文章内容容器-->
-            <div id="fiction_container" class="m-read-content">
-                <h4>又是连中三元的新科状元</h4>
-    <p>白子涵见江暖心果真要走，轩眉不由蹙了蹙，眼神中隐隐有丝波动。</p>
-    <p>他有显赫的家世，又是连中三元的新科状元，金榜题名时，妒煞天下人，更不必说他本就相貌堂堂，向来自诩文采风流，走到哪都是众人焦点所在，可是今日，这传言中看到好看一点的男子就会发痴的小表妹竟然无视他至此，实在让他心里有些不是滋味。</p>
-    <p>江暖心命二婢收拾好了东西，就在经过白子涵身边时，却听一道清越的声音响在耳畔，“父亲明日回京，母亲命我过来邀请表妹明晚过府参加家宴。”</p>
-    <p>江暖心闻言顿时一愣，她转眸看向一本正经的白子涵，眼珠子转了转，突然伸手指着自己鼻尖，一脸疑惑，“表哥，你是不是记错了？舅妈会邀请我？”</p>
-    <p>“怎么？难道表妹不愿赏脸？”白子涵挑了挑轩眉，此时他眼睛虽是看着江暖心，心中却掠过方才她怒打江若雪那一幕，如果他没看错的话，江暖心她，其实是有武功的吧。</p>
-    <p>而且，似乎还不弱！</p>
-    <p>其实，他刚刚确实是撒谎了，其实自从祖父去世后，擎北侯府就与江府断了来往，父亲与母亲都认为祖父是因为江暖心的事才被气死的，从而迁怒江暖心，从此对她不闻不问，就连江旭将她送去别庄都不管。今日，母亲也并没有让他来邀请江暖心，而是他见江暖心变化那么大，对她起了好奇，所以自己做主了。</p>
-    <p>“怎么会呢？”江暖心不过略一思索，便展颜笑道，“那就烦请表哥告诉舅妈一声，明晚暖心一定准时到！”</p>
-    <p>入夜，凤京城最风雅的楚馆……拈花小筑。</p>
-    <p>这个楚馆半年前突然横空出现，刚开业就声名大噪。</p>
-    <p>不同于一般花楼那种低俗的皮肉交易，拈花小筑却是以美食与美女作为招牌，尤其是推新近出了一道别出心裁的“美女盛”，是以赤果的绝色美女作为绝世菜品的盛器，刚一面世，就引得宾客络绎不绝，无不以一尝此道菜为殊荣。然而这道菜偏偏又是一个月才出一次，其价值更是高达千金，所以至今能有幸品尝到这道菜的客人寥寥无几，几乎全是位高权重之人。</p>
-    <p>也正是因为如此，拈花小筑的名声更是随之水涨船高，加之这里的女伶个个青春貌美，又俱是多才多艺，所以即使她们是卖艺不卖身，也仍然引得几乎整个凤京城的男人趋之若鹜，日夜爆满。</p>
-    <p>此时，拈花小筑三楼一间装饰奢华的套间，在墙壁上镶嵌的拳头大的夜明珠辉光照耀下，满头珠翠，穿着艳丽的女子正看着面前厚厚的账本，聚精会神地噼里啪啦拨着算盘珠。</p>
-    <p>屋外雪光照耀，冷风刺骨，屋内却暖意融融，花架上一盆名贵的绿牡丹开得正盛。</p>
-    <p>“阿花，你到底算好了没啊？”寂静中，突然响起一道慵懒的声音。</p>
-    <p>“好了好了！马上就好！”那艳丽女子随口答道，却又像是突然想起了什么，顺手砸过来一个账本，怒道，“再说一次，不准叫我阿花！那是小狗的名字！”</p>
-    <p>墨衣少年伸手接住账本，看也不看就放在一边，嘻嘻笑着，“好了，阿花，你再算也算不出花来，快来陪爷唠嗑。”</p>
-    <p>这墨衣少年便是江暖心，她今夜没有易容，而是戴了人皮面具，莹莹珠光下，只见她眉修目俊，高鼻薄唇，赫然是一名貌似潘安的美少年模样。</p>
-    <p>如果江暖心此时以这副面容走出拈花小筑，怕不是明日就要引得全凤京城的人踏破拈花小筑的门槛了，毕竟，神医风华公子可是江湖中赫赫有名的人物，据说他有活死人药白骨的通天本领，无论得了什么病，只要你还有一口气在，他就有本事能让你药到病除，号称敢跟阎王抢人！</p>
-    <p>有了这些传言，加上经他手治疗过的病人的卖力宣传，好几年前，风华公子就成为江湖中的一大传奇人物了。</p>
-    <p>不过，却无人知晓那人人敬重的风华公子，就是传闻中狠毒无情杀人不眨眼的暗门门主玉修罗。</p>
-    <p>此时舒曼华将手往算盘上一放，长舒了口气，“终于算完了。”然后兴高采烈抬起脸望着江暖心俊美无俦的面容，炯炯有神问道，“爷，你想不想知道，这个月我们赚了多少银子？”</p>
-    <p>“不想！”江暖心打了个哈欠，十分无趣道，“阿花你记着就行！反正都是我的！”</p>
-    <p>舒曼华闻言顿时蔫了，随即又竖着眉毛，拍着桌子一副恨铁不成钢的样子，“江暖心，你说你好歹也是幕后大老板，你就这么放心老娘给你管着钱？你就不怕哪天老娘良心被狗吃了，把你的钱全卷了跑路！”</p>
-    <p>“哦？原来舒大美人的良心还没被狗吃完啊？”江暖心摸下巴，作沉思状。</p>
-    <p>“江暖心，你够了啊！”舒曼华愤怒叉腰，两眼冒火，“老娘虽然打不过你，可是老娘也是有尊严的！”</p>
-    <p>舒曼华其实只比江暖心大两岁，刚刚十八岁，她长的也是相当漂亮，而且她的容貌属于特别艳丽的那种，身材亦是凹凸有致，她整个人给人的感觉就像是从西方油画里走出来的美女，浓墨重彩到让人想不记住都难。</p>
-    <p>五年前，江暖心刚穿过来就认识舒曼华了。</p>
-    <p>那时候舒曼华刚死了爹娘，家产被族人霸占，她不愿被送去给人做妾，于是带着幼弟连夜逃了出来，不想盘缠用尽，大雪天病倒在路边，两人差点就冻死了。江暖心恰好路过，见她们可怜，所以就救了她们，顺道带去了别庄，没想到两人性情相近，一拍即合，于是就这么成了好朋友，随后江暖心发现舒曼华是个经商天才，恰好她也想在这异世试试身手，所以后来她出点子，写策划，将从死老道士那坑来的钱用作投入资金，舒曼华替她经营管理，短短几年，还真让她们俩成功了。</p>
-    <p>这座日进斗金的拈花小筑就是其中一处试点，而那坑爹的“美女盛”自然也就是江暖心抄袭自岛国的变态主意。</p>
-            </div>
-            <!--边栏-->
-            <div class="m-button-bar">
-                <!--切换按钮-->
-                <ul class="u-tab">
-                    <li id="prev_button">上一章</li>
-                    <li id="next_button">下一章</li>
+            <div class="child-mod nav-pannel-bottom">
+                <span>背景</span>
+                <ul id="backgroundCOlor">
+                    <li class="on" data-color="#F7EEE5" data-font="#555"><b></b></li>
+                    <li data-color="#E9DFC7" data-font="#555"><b></b></li>
+                    <li data-color="#A4A4A4" data-font="#555"><b></b></li>
+                    <li data-color="#CDEFCE" data-font="#555"><b></b></li>
+                    <li data-color="#283548" data-font="#7685a2"><b></b></li>
+                    <li data-color="#0F1410" data-font="#505651"><b></b></li>
                 </ul>
             </div>
-            <!--底部栏-->
-                <div class="nav-pannel" id="font-content" style="display:none;">
-                <div class="child-mod nav-pannel-top">
-                    <span>字号</span>
-                    <button id="large-font" class="font-size-button">大</button>
-                    <button id="samll-font" class="font-size-button">小</button>
-                </div>
-                <div class="child-mod nav-pannel-bottom">
-                    <span>背景</span>
-                    <ul id="backgroundCOlor">
-                        <li class="on" data-color="#F7EEE5" data-font="#555"><b></b></li>
-                        <li data-color="#E9DFC7" data-font="#555"><b></b></li>
-                        <li data-color="#A4A4A4" data-font="#555"><b></b></li>
-                        <li data-color="#CDEFCE" data-font="#555"><b></b></li>
-                        <li data-color="#283548" data-font="#7685a2"><b></b></li>
-                        <li data-color="#0F1410" data-font="#505651"><b></b></li>
-                    </ul>
-                </div>
+        </div>
+        <div class="bottom-nav" style="display:none;">
+            <div class="catalog">
+                <b class="icon"></b>
+                <h3>目录</h3>
             </div>
-            <div class="bottom-nav" style="display:none;">
-                <div class="catalog">
-                    <b class="icon"></b>
-                    <h3>目录</h3>
-                </div>
-                <div class="font-box j-font-box">
-                    <b class="icon"></b>
-                    <h3>字体</h3>
-                </div>
-                <div class="day-night">
-                    <b class="icon"></b>
-                    <h3>夜间</h3>
-                </div>
+            <div class="font-box j-font-box">
+                <b class="icon"></b>
+                <h3>字体</h3>
+            </div>
+            <div class="day-night">
+                <b class="icon"></b>
+                <h3>夜间</h3>
             </div>
         </div>
-        <script src="lib/zepto.min.js"></script>
-        <script>
-            window.jQuery = $;
-        </script>
-        <script src="js/jquery.base64.js"></script>
-        <script src="js/jquery.jsonp.js"></script>
-
-        <script>
-          (function(){
-              var Util = (function(){
-                    var prefix = 'ficiton_reader_';
-                    var StorageGetter = function(key) {
-                        return localStorage.getItem(prefix + key);
-                    }
-                    var StorageSetter = function(key, val) {
-                        return localStorage.setItem(prefix + key, val);
-                    }
-                  return {
-                      StorageGetter:StorageGetter,
-                      StorageSetter:StorageSetter
-                  }
-              })();
-              var Dom = {
-                  top_nav:$('#top-nav'),
-                  font_content:$('#font-content'),
-                  bottom_nav:$('.bottom-nav'),
-                  j_font_box:$('.j-font-box'),
-                  j_font_box_child:$('.j-font-box').children('.icon'),
-                  root:$('body'),
-                  bcgLI:$('#backgroundCOlor li')
-                  
-              }
-              var Win = $(window);
-              var Doc = $(document);
-              var fiction_container = $('#fiction_container');
-              var defaultFontSize = Util.StorageGetter('font_size');
-              //白天黑夜开关
-              var NightMode = true;
-              //背景&字体颜色
-              var font_color;
-              var background_color;
-                 
-              if(!defaultFontSize){
-                  defaultFontSize = 14;
-              }
-               fiction_container.css('font-size',defaultFontSize+'px');
-               
-           var NightModeFnLen = Dom.bcgLI.size()-1;
-            function NightModeFn(obj){
-               Dom.bcgLI.removeClass('on');
-               obj.addClass('on');
-               font_color = obj.attr('data-font');
-               background_color = obj.attr('data-color');
-               //字体颜色
-               Util.StorageSetter('font_color',font_color);
-               //背景颜色
-               Util.StorageSetter('background_color',background_color);
-               //存储用户选择颜色的对象索引
-               Util.StorageSetter('obj_index',obj.index())
-               Dom.root.css({
-                   'color':font_color,
-                    'backgroundColor':background_color
-               })
-               if(obj.index() != NightModeFnLen){
-                   $('.day-night').children('.icon').removeClass('icons');
-                   $('.day-night').children('h3').text('夜间');
-                    NightMode=true;
-               }else if(obj.index() == NightModeFnLen){
-                     $('.day-night').children('.icon').addClass('icons');
-                      $('.day-night').children('h3').text('白天');
-                       NightMode=false;
-               }
+    </div>
+    <script src="lib/zepto.min.js"></script>
+    <script>
+    window.jQuery = $;
+    </script>
+    <script src="js/jquery.base64.js"></script>
+    <script src="js/jquery.jsonp.js"></script>
+    <script>
+    (function() {
+        var Util = (function() {
+            var prefix = 'ficiton_reader_';
+            var StorageGetter = function(key) {
+                return localStorage.getItem(prefix + key);
             }
-               if(Util.StorageGetter('obj_index')){
-                   NightModeFn(Dom.bcgLI.eq(parseInt(Util.StorageGetter('obj_index'))))
-               }
-              
-              
-                function main(){
-                    //todo 整个项目的入口函数
-                    EventHanlder();
-                    
+            var StorageSetter = function(key, val) {
+                    return localStorage.setItem(prefix + key, val);
                 }
-                
-                function ReaderModel(){
-                    //todo实现和阅读器相关数据交互的方法
-                }
-                
-                function ReaderBaseFrame(){
-                    //todo渲染基本的UI结构
-                }
-                
-                function EventHanlder(){
-                    //交互的事件绑定
-                    $('#action_mid').click(function(){
-                        if(Dom.top_nav.css('display')=='none'){
-                            Dom.top_nav.show();
-                            Dom.bottom_nav.show();
-                        }else{
-                            Dom.top_nav.hide();
-                            Dom.font_content.hide();
-                            Dom.bottom_nav.hide();
-                            Dom.j_font_box_child.removeClass('icons');
-                        }
-                    })
-                    $('.j-font-box').click(function(){
-                        if(Dom.font_content.css('display')=='none'){
-                            Dom.font_content.show();
-                            Dom.j_font_box_child.addClass('icons');
-                        }else{
-                            Dom.font_content.hide();
-                            Dom.j_font_box_child.removeClass('icons');
-                        }
-                    })
+                //数据解密
+            var getBSONP = function(url, callback) {
+                return $.jsonp({
+                    url: url,
+                    cache: true,
+                    callback: "duokan_fiction_chapter",
+                    success: function(result) {
+                        var data = $.base64.decode(result);
+                        var json = decodeURIComponent(escape(data));
+                        callback(json);
+                    }
+                });
 
-                    $('#large-font').click(function(){
-                        if(defaultFontSize>20){
-                            return;
-                        }
-                        ++defaultFontSize;
-                        fiction_container.css('font-size',defaultFontSize);
-                        Util.StorageSetter('font_size',defaultFontSize);
+            };
+            return {
+                getBSONP: getBSONP,
+                StorageGetter: StorageGetter,
+                StorageSetter: StorageSetter
+            }
+        })();
+        var Dom = {
+            top_nav: $('#top-nav'),
+            font_content: $('#font-content'),
+            bottom_nav: $('.bottom-nav'),
+            j_font_box: $('.j-font-box'),
+            j_font_box_child: $('.j-font-box').children('.icon'),
+            root: $('body'),
+            bcgLI: $('#backgroundCOlor li')
+
+        }
+        var Win = $(window);
+        var Doc = $(document);
+        var fiction_container = $('#fiction_container');
+        var defaultFontSize = Util.StorageGetter('font_size');
+        //白天黑夜开关
+        var NightMode = true;
+        //背景&字体颜色
+        var font_color;
+        var background_color;
+
+        if (!defaultFontSize) {
+            defaultFontSize = 14;
+        }
+        fiction_container.css('font-size', defaultFontSize + 'px');
+
+        var NightModeFnLen = Dom.bcgLI.size() - 1;
+
+        function NightModeFn(obj) {
+            Dom.bcgLI.removeClass('on');
+            obj.addClass('on');
+            font_color = obj.attr('data-font');
+            background_color = obj.attr('data-color');
+            //字体颜色
+            Util.StorageSetter('font_color', font_color);
+            //背景颜色
+            Util.StorageSetter('background_color', background_color);
+            //存储用户选择颜色的对象索引
+            Util.StorageSetter('obj_index', obj.index())
+            Dom.root.css({
+                'color': font_color,
+                'backgroundColor': background_color
+            })
+            if (obj.index() != NightModeFnLen) {
+                $('.day-night').children('.icon').removeClass('icons');
+                $('.day-night').children('h3').text('夜间');
+                NightMode = true;
+            } else if (obj.index() == NightModeFnLen) {
+                $('.day-night').children('.icon').addClass('icons');
+                $('.day-night').children('h3').text('白天');
+                NightMode = false;
+            }
+        }
+        if (Util.StorageGetter('obj_index')) {
+            NightModeFn(Dom.bcgLI.eq(parseInt(Util.StorageGetter('obj_index'))))
+        }
+
+
+        function main() {
+            //todo 整个项目的入口函数
+            var readerModel = ReaderModel();
+            var readerUI = ReaderBaseFrame(fiction_container);
+            readerModel.init(function(data) {
+                readerUI(data);
+            });
+            EventHanlder();
+        }
+
+        function ReaderModel() {
+
+            //todo实现和阅读器相关数据交互的方法
+            var Chapter_id;
+            var init = function(UIcallback) {
+                getFictionInfo(function() {
+                    getCurChapterContent(Chapter_id, function(data) {
+                        UIcallback && UIcallback(data)
                     });
-                    $('#samll-font').click(function(){
-                        if(defaultFontSize<12){
-                            return;
-                        }
-                        --defaultFontSize;
-                        fiction_container.css('font-size',defaultFontSize);
-                        Util.StorageSetter('font_size',defaultFontSize);
-                    });
-                    Dom.bcgLI.click(function(){
-                        NightModeFn($(this))
-                    })
-                    $('.day-night').click(function(){
-                        if(NightMode){
-                             NightModeFn( Dom.bcgLI.eq(NightModeFnLen));
-                        }else{
-                             NightModeFn( Dom.bcgLI.eq(0));
-                        }
-                    })
-                    Win.scroll(function(){
-                        Dom.top_nav.hide();
-                        Dom.bottom_nav.hide();
-                        Dom.font_content.hide();
-                        Dom.j_font_box_child.removeClass('icons');
-                        Util.StorageSetter('font_size',defaultFontSize);
-                    })
+
+                })
+            }
+            var getFictionInfo = function(callback) {
+                $.get('data/chapter.json', function(data) {
+                    //获取章节信息之后的回调
+                    Chapter_id = data.chapters[1].chapter_id;
+                    callback && callback();
+                }, 'json');
+            }
+
+            var getCurChapterContent = function(chapter_id, callback) {
+                $.get('data/data' + chapter_id + '.json', function(data) {
+                    if (data.result == 0) {
+                        var url = data.jsonp;
+                        Util.getBSONP(url, function(data) {
+                            // debugger
+                            callback && callback(data);
+                        });
+                    }
+                }, 'json')
+            }
+
+            return {
+                init: init
+            }
+
+        }
+
+
+
+
+        function ReaderBaseFrame(container) {
+            //todo渲染基本的UI结构
+            function parseChapterData(jsonData) {
+                var jsonObj = JSON.parse(jsonData);
+                var html = '<h4>' + jsonObj.t + '</h4>';
+                for (var i = 0; i < jsonObj.p.length; i++) {
+                    html += '<p>' + jsonObj.p[i] + '</p>';
                 }
-                
-                main();
-                
-          })();
-        </script>
-    </body>
+                return html;
+            }
+
+            return function(data) {
+                container.html(parseChapterData(data));
+            }
+        }
+
+        function EventHanlder() {
+            //交互的事件绑定
+            $('#action_mid').click(function() {
+                if (Dom.top_nav.css('display') == 'none') {
+                    Dom.top_nav.show();
+                    Dom.bottom_nav.show();
+                } else {
+                    Dom.top_nav.hide();
+                    Dom.font_content.hide();
+                    Dom.bottom_nav.hide();
+                    Dom.j_font_box_child.removeClass('icons');
+                }
+            })
+            $('.j-font-box').click(function() {
+                if (Dom.font_content.css('display') == 'none') {
+                    Dom.font_content.show();
+                    Dom.j_font_box_child.addClass('icons');
+                } else {
+                    Dom.font_content.hide();
+                    Dom.j_font_box_child.removeClass('icons');
+                }
+            })
+
+            $('#large-font').click(function() {
+                if (defaultFontSize > 20) {
+                    return;
+                }
+                ++defaultFontSize;
+                fiction_container.css('font-size', defaultFontSize);
+                Util.StorageSetter('font_size', defaultFontSize);
+            });
+            $('#samll-font').click(function() {
+                if (defaultFontSize < 12) {
+                    return;
+                }
+                --defaultFontSize;
+                fiction_container.css('font-size', defaultFontSize);
+                Util.StorageSetter('font_size', defaultFontSize);
+            });
+            Dom.bcgLI.click(function() {
+                NightModeFn($(this))
+            })
+            $('.day-night').click(function() {
+                if (NightMode) {
+                    NightModeFn(Dom.bcgLI.eq(NightModeFnLen));
+                } else {
+                    NightModeFn(Dom.bcgLI.eq(0));
+                }
+            })
+            Win.scroll(function() {
+                Dom.top_nav.hide();
+                Dom.bottom_nav.hide();
+                Dom.font_content.hide();
+                Dom.j_font_box_child.removeClass('icons');
+                Util.StorageSetter('font_size', defaultFontSize);
+            })
+        }
+
+        main();
+
+    })();
+    </script>
+</body>
+
 </html>
