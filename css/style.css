@@ -166,7 +166,7 @@ body{
 }
 
 .nav-pannel .child-mod{
-    padding:20px 25px 5px;
+    padding:20px 15px 5px;
     color:#fff;
 }
 .nav-pannel button {
@@ -183,7 +183,7 @@ body{
 
 .nav-pannel span{ 
     display:inline-block;
-    margin:0 20px 0 0;
+    margin:0 10px 0 0;
 }
 .nav-pannel-bottom ul{
     display:inline-block; 
