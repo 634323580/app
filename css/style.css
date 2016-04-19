@@ -14,6 +14,9 @@ body{
 }
 #root{
     color:#555;
+    max-width:640px;
+    min-width:320px;
+    margin:0 auto;
 }
 .m-read-content{
     font-size:14px;
