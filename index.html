@@ -20,7 +20,7 @@
             </div>
             <!--文章标题-->
             <div id="fiction_title"></div>
-            <div id="ajxash">
+            <div id="ajxash" style="display:none;">
               <!--文章内容容器-->
               <div id="fiction_container" class="m-read-content">
 
@@ -96,6 +96,8 @@
                           var data = $.base64.decode(result);
                           var json = decodeURIComponent(escape(data));
                           callback(json);
+                          $('#ajxash').show();
+
                         }
                       });
 
@@ -215,9 +217,7 @@
                     var getCurChapterContent = function(chapter_id,callback){
                       $.get('data/data' + chapter_id + '.json',function(data){
                         //load
-                          $('#ajxash').hide();
                           if(data.result == 0){
-                            $('#ajxash').show();
                             var url = data.jsonp;
                             Util.getBSONP(url,function(data){
                               // debugger
