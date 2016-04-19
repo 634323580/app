@@ -20,17 +20,19 @@
             </div>
             <!--文章标题-->
             <div id="fiction_title"></div>
-            <!--文章内容容器-->
-            <div id="fiction_container" class="m-read-content">
+            <div id="ajxash">
+              <!--文章内容容器-->
+              <div id="fiction_container" class="m-read-content">
 
-            </div>
-            <!--边栏-->
-            <div class="m-button-bar">
-                <!--切换按钮-->
-                <ul class="u-tab">
-                    <li id="prev_button">上一章</li>
-                    <li id="next_button">下一章</li>
-                </ul>
+              </div>
+              <!--边栏-->
+              <div class="m-button-bar">
+                  <!--切换按钮-->
+                  <ul class="u-tab">
+                      <li id="prev_button">上一章</li>
+                      <li id="next_button">下一章</li>
+                  </ul>
+              </div>
             </div>
             <!--底部栏-->
                 <div class="nav-pannel" id="font-content" style="display:none;">
@@ -74,6 +76,7 @@
         <script src="js/jquery.jsonp.js"></script>
 
         <script>
+
           (function(){
               var Util = (function(){
                     var prefix = 'ficiton_reader_';
@@ -211,7 +214,10 @@
 
                     var getCurChapterContent = function(chapter_id,callback){
                       $.get('data/data' + chapter_id + '.json',function(data){
+                        //load
+                          $('#ajxash').hide();
                           if(data.result == 0){
+                            $('#ajxash').show();
                             var url = data.jsonp;
                             Util.getBSONP(url,function(data){
                               // debugger
