@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html ng-app="app">
     <head>
@@ -9,7 +8,19 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-    <div id="load" style="position:fixed;left:45%;top:50%;z-index:9999999;">load......</div>
+    <div id="load" class="load load1">
+        <i></i>
+        <!--<div class="loading-3">-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--    <i></i>-->
+        <!--</div>-->
+    </div>
         <div id="root" class="container">
             <div class="m-artcal-action">
                 <div class="atrical-action-mid" id="action_mid"></div>
@@ -45,12 +56,12 @@
                 <div class="child-mod nav-pannel-bottom">
                     <span>背景</span>
                     <ul id="backgroundCOlor">
-                        <li class="on" data-color="#F7EEE5" data-font="#555"><b></b></li>
-                        <li data-color="#E9DFC7" data-font="#555"><b></b></li>
-                        <li data-color="#A4A4A4" data-font="#555"><b></b></li>
-                        <li data-color="#CDEFCE" data-font="#555"><b></b></li>
-                        <li data-color="#283548" data-font="#7685a2"><b></b></li>
-                        <li data-color="#0F1410" data-font="#505651"><b></b></li>
+                        <li class="on" data-color="#F7EEE5" data-font="#555"></li>
+                        <li data-color="#E9DFC7" data-font="#555"></li>
+                        <li data-color="#A4A4A4" data-font="#555"></li>
+                        <li data-color="#CDEFCE" data-font="#555"></li>
+                        <li data-color="#283548" data-font="#7685a2"></li>
+                        <li data-color="#0F1410" data-font="#505651"></li>
                     </ul>
                 </div>
             </div>
@@ -79,6 +90,9 @@
         <script>
 
           (function(){
+              
+              'use strict';
+              
               var Util = (function(){
                     var prefix = 'ficiton_reader_';
                     var StorageGetter = function(key) {
@@ -193,14 +207,20 @@
                     var Chapter_id;
                     var ChapterTotal;
                     var init = function(UIcallback){
-                      getFictionInfo(function(){
+                     /* getFictionInfo(function(){
                         getCurChapterContent(Chapter_id,function(data){
                           UIcallback && UIcallback(data)
                         });
 
-                      })
+                      })*/
+                      
+                      getFictionInfoPromise().then(function(d){
+                        return getCurChapterContentPromis();
+                      }).then(function(data){
+                           UIcallback && UIcallback(data)
+                      });
                     }
-                    var getFictionInfo = function(callback){
+/*                    var getFictionInfo = function(callback){
                       $.get('data/chapter.json',function(data){
                           //获取章节信息之后的回调
                           // 获取用户记录的章节内容
@@ -214,9 +234,33 @@
                           ChapterTotal = data.chapters.length;
                            callback && callback();
                       },'json');
+                    }*/
+                    
+                    var getFictionInfoPromise = function(){
+                       return new Promise(function(resolve,reject){
+                        
+                      $.get('data/chapter.json',function(data){
+                          if(data.result == 0){
+                              
+                          //获取章节信息之后的回调
+                          // 获取用户记录的章节内容
+                          if(Util.StorageGetter('Chapter_id')){
+                            Chapter_id = parseInt(Util.StorageGetter('Chapter_id'));
+                          }else{
+                            Chapter_id = data.chapters[1].chapter_id;
+                          }
+                          ChapterTotal = data.chapters.length;
+                          resolve();
+                          }else{
+                           reject();   
+                          }
+
+                      },'json');
+                        
+                    });
                     }
 
-                    var getCurChapterContent = function(chapter_id,callback){
+/*                    var getCurChapterContent = function(chapter_id,callback){
                       $('#load').show();
                       $.get('data/data' + chapter_id + '.json',function(data){
                         //load
@@ -228,6 +272,28 @@
                             });
                           }
                       },'json')
+                    }*/
+                    var getCurChapterContentPromis = function(){
+                       return new Promise(function(resolve,reject){
+                        
+                      $('#load').show();
+                      $.get('data/data' + Chapter_id + '.json',function(data){
+                        //load
+                          if(data.result == 0){
+                            var url = data.jsonp;
+                            Util.getBSONP(url,function(data){
+                              // debugger
+                            //   callback && callback(data);
+                               resolve(data);
+                            });
+                           
+                          }else{
+                            reject({mas:'fail'});  
+                          }
+                      },'json')
+                      
+                      
+                    });
                     }
                     var prevChapter = function(UIcallback){
                         Chapter_id = parseInt(Chapter_id,10);
@@ -236,7 +302,10 @@
                         }
                         Chapter_id -= 1;
                         Util.StorageSetter('Chapter_id',Chapter_id);
-                        getCurChapterContent(Chapter_id,UIcallback);
+                        // getCurChapterContent(Chapter_id,UIcallback);
+                        getCurChapterContentPromis().then(function(data){
+                            UIcallback && UIcallback(data)
+                        });
                     }
                     var nextChpater = function(UIcallback){
                       Chapter_id = parseInt(Chapter_id,10);
@@ -245,7 +314,10 @@
                       }
                       Chapter_id += 1;
                       Util.StorageSetter('Chapter_id',Chapter_id);
-                      getCurChapterContent(Chapter_id,UIcallback);
+                    //   getCurChapterContent(Chapter_id,UIcallback);
+                     getCurChapterContentPromis().then(function(data){
+                           UIcallback && UIcallback(data)
+                        });
                     }
                     return {
                       init : init,
