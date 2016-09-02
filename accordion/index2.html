@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.guide {
+    height: 100%;
+    position: relative;
+}
+
+.guide ul:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.guide ul {
+    height: 100%;
+    list-style: none;
+    width: 100%;
+}
+
+.guide li {
+    width: 28%;
+    height: 100%;
+    float: left;
+/*    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;*/
+    -webkit-transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    -moz-transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.guide li a {
+    display: block;
+    height: 100%;
+    position: relative;
+}
+
+.guide li a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.guide li.on a:after {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.guide li.guide1 a {
+    background-image: url(images/guide1.jpg);
+}
+
+.guide li.guide2 a {
+    background-image: url(images/guide2.jpg);
+}
+
+.guide li.guide3 a {
+    background-image: url(images/guide3.jpg);
+}
+
+.guide li.guide4 a {
+    background-image: url(images/guide4.jpg);
+}
+
+.guide li.guide5 a {
+    background-image: url(images/guide5.jpg);
+}
+
+.guide li a {
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left center;
+}
+
+.guide-text {
+    width: 63%;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -32%;
+    background-color: #fff;
+    line-height: 100px;
+    border: 10px solid hsla(0, 0%, 100%, .5);
+    background: white;
+    background-clip: padding-box;
+    text-align-last: center;
+    font-size: 34px;
+    color: #000;
+    font-family: '微软雅黑';
+}
+
+.guide-text img {
+    vertical-align: middle;
+    margin-right: 20px;
+}
+</style>
+
+<body>
+    <div class="guide">
+        <ul>
+            <li class="guide1">
+                <a href="#"></a>
+            </li>
+            <li class="guide2">
+                <a href="#"></a>
+            </li>
+            <li class="guide3">
+                <a href="#"></a>
+            </li>
+            <li class="guide4">
+                <a href="#"></a>
+            </li>
+            <li class="guide5 on">
+                <a href="#"></a>
+            </li>
+        </ul>
+        <div class="guide-text">
+            <img src="images/guide-logo.jpg" height="31" width="87" alt="">请选择您所在站点
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+    $(function() {
+        var leftArr = [];
+        var guideItem = $('.guide li');
+        guideItem.each(function(index) {
+            // 重置每个块的初始位置
+            guideItem.eq(index).css({
+                'left': index * 18 + '%'
+            })
+            leftArr.push(index * 18 + '%');
+        })
+
+        console.log(leftArr)
+
+        guideItem.mouseenter(function() {
+
+            var _this = $(this).index()
+
+            //鼠标移过当前块位置
+            $(this).css({
+                'left': $(this).index() * 18 + '%'
+            })
+
+            $(this).addClass('on').siblings('.on').removeClass('on');
+
+            //其他块的位置
+            guideItem.each(function(index) {
+                if (index > _this) {
+                    $(this).css({
+                        'left': index * 18 + 10 + '%'
+                    })
+                }else{
+                    $(this).css({
+                        'left':leftArr[index]
+                    })
+                }
+            })
+
+
+
+        });
+    })
+    </script>
+</body>
+
+</html>
