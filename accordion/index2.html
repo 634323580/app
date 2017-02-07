@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.guide {
+    height: 100%;
+    position: relative;
+}
+
+.guide ul:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.guide ul {
+    height: 100%;
+    list-style: none;
+    width: 100%;
+}
+
+.guide li {
+    width: 25%;
+    height: 100%;
+    float: left;
+/*    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;*/
+    -webkit-transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    -moz-transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    transition: .8s cubic-bezier(0.86, 0, 0.07, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.guide li a {
+    display: block;
+    height: 100%;
+    position: relative;
+}
+
+.guide li a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.guide li.on a:after {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.guide li.guide1 a {
+    background-image: url(images/guide1.jpg);
+}
+
+.guide li.guide2 a {
+    background-image: url(images/guide2.jpg);
+}
+
+.guide li.guide3 a {
+    background-image: url(images/guide3.jpg);
+}
+
+.guide li.guide4 a {
+    background-image: url(images/guide4.jpg);
+}
+
+.guide li.guide5 a {
+    background-image: url(images/guide5.jpg);
+}
+
+
+.guide li.guide6 a {
+    background-image: url(images/guide5.jpg);
+}
+
+.guide li a {
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:left center;
+}
+
+.guide-text {
+    width: 63%;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    margin-left: -32%;
+    background-color: #fff;
+    line-height: 100px;
+    border: 10px solid hsla(0, 0%, 100%, .5);
+    background: white;
+    background-clip: padding-box;
+    text-align-last: center;
+    font-size: 34px;
+    color: #000;
+    font-family: '微软雅黑';
+}
+
+.guide-text img {
+    vertical-align: middle;
+    margin-right: 20px;
+}
+</style>
+
+<body>
+    <div class="guide">
+        <ul>
+            <li class="guide1">
+                <a href="#"></a>
+            </li>
+            <li class="guide2">
+                <a href="#"></a>
+            </li>
+            <li class="guide3 on">
+                <a href="#"></a>
+            </li>
+            <li class="guide4">
+                <a href="#"></a>
+            </li>
+            <li class="guide5">
+                <a href="#"></a>
+            </li>
+            <li class="guide6">
+                <a href="#"></a>
+            </li>
+        </ul>
+        <div class="guide-text">
+            <img src="images/guide-logo.jpg" height="31" width="87" alt="">请选择您所在站点
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+    function go(guideItem, length, number) {
+        // 前面item重叠起来的宽度
+        var itemWidth = (length - 1) * number; 
+        // 计算出每个item的宽度
+        var activeWidth = 100 - (length - 1) * number;
+        guideItem.css('width', activeWidth + '%')
+        var nextPosition = activeWidth - number
+        var leftArr = [];
+        guideItem.each(function(index) {
+            // 重置每个块的初始位置
+            guideItem.eq(index).css({
+                'left': index * number + '%'
+            })
+            leftArr.push(index * number + '%');
+        })
+
+        guideItem.mouseenter(function() {
+            var _this = $(this).index()
+            //鼠标移过当前块位置
+            $(this).css({
+                'left': $(this).index() * number + '%'
+            })
+
+            $(this).addClass('on').siblings('.on').removeClass('on');
+
+            //其他块的位置
+            guideItem.each(function(index) {
+                if (index > _this) {
+                    $(this).css({
+                        'left': index * number + nextPosition + '%'
+                    })
+                }else{
+                    $(this).css({
+                        'left':leftArr[index]
+                    })
+                }
+            })
+
+        });
+    }
+    $(function() {
+        // 比如，每张图片的宽度为20%，有6张图片，5*15 = 75， 100 - 75 = 25 ， 25就是每张图片宽度的%
+        // 计算公式
+        // 每张图片设定的宽度
+        // 默认下 一直存在的位置
+        // 重叠的宽度 + 原本的宽度一定要等于100     15*5+25 === 100
+        var guideItem = $('.guide li');
+        var guideItemLength = guideItem.size();
+        go(guideItem, guideItemLength, 15);
+        $('.guide li.on').trigger('mouseover')
+
+    })
+    </script>
+</body>
+
+</html>
