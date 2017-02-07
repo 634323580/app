@@ -36,7 +36,7 @@ html {
 }
 
 .guide li {
-    width: 28%;
+    width: 25%;
     height: 100%;
     float: left;
 /*    -moz-transition: all .5s ease;
@@ -93,6 +93,11 @@ html {
     background-image: url(images/guide5.jpg);
 }
 
+
+.guide li.guide6 a {
+    background-image: url(images/guide5.jpg);
+}
+
 .guide li a {
     background-size:cover;
     background-repeat:no-repeat;
@@ -131,13 +136,16 @@ html {
             <li class="guide2">
                 <a href="#"></a>
             </li>
-            <li class="guide3">
+            <li class="guide3 on">
                 <a href="#"></a>
             </li>
             <li class="guide4">
                 <a href="#"></a>
             </li>
-            <li class="guide5 on">
+            <li class="guide5">
+                <a href="#"></a>
+            </li>
+            <li class="guide6">
                 <a href="#"></a>
             </li>
         </ul>
@@ -147,26 +155,27 @@ html {
     </div>
     <script src="jquery.js"></script>
     <script>
-    $(function() {
+    function go(guideItem, length, number) {
+        // 前面item重叠起来的宽度
+        var itemWidth = (length - 1) * number; 
+        // 计算出每个item的宽度
+        var activeWidth = 100 - (length - 1) * number;
+        guideItem.css('width', activeWidth + '%')
+        var nextPosition = activeWidth - number
         var leftArr = [];
-        var guideItem = $('.guide li');
         guideItem.each(function(index) {
             // 重置每个块的初始位置
             guideItem.eq(index).css({
-                'left': index * 18 + '%'
+                'left': index * number + '%'
             })
-            leftArr.push(index * 18 + '%');
+            leftArr.push(index * number + '%');
         })
 
-        console.log(leftArr)
-
         guideItem.mouseenter(function() {
-
             var _this = $(this).index()
-
             //鼠标移过当前块位置
             $(this).css({
-                'left': $(this).index() * 18 + '%'
+                'left': $(this).index() * number + '%'
             })
 
             $(this).addClass('on').siblings('.on').removeClass('on');
@@ -175,7 +184,7 @@ html {
             guideItem.each(function(index) {
                 if (index > _this) {
                     $(this).css({
-                        'left': index * 18 + 10 + '%'
+                        'left': index * number + nextPosition + '%'
                     })
                 }else{
                     $(this).css({
@@ -184,9 +193,19 @@ html {
                 }
             })
 
-
-
         });
+    }
+    $(function() {
+        // 比如，每张图片的宽度为20%，有6张图片，5*15 = 75， 100 - 75 = 25 ， 25就是每张图片宽度的%
+        // 计算公式
+        // 每张图片设定的宽度
+        // 默认下 一直存在的位置
+        // 重叠的宽度 + 原本的宽度一定要等于100     15*5+25 === 100
+        var guideItem = $('.guide li');
+        var guideItemLength = guideItem.size();
+        go(guideItem, guideItemLength, 15);
+        $('.guide li.on').trigger('mouseover')
+
     })
     </script>
 </body>
