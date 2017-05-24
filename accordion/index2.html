@@ -203,8 +203,8 @@ html {
         // 重叠的宽度 + 原本的宽度一定要等于100     15*5+25 === 100
         var guideItem = $('.guide li');
         var guideItemLength = guideItem.size();
-        go(guideItem, guideItemLength, 15);
-        $('.guide li.on').trigger('mouseover')
+        go(guideItem, guideItemLength, (100 - 25) / (guideItemLength - 1));
+        // $('.guide li.on').trigger('mouseover')
 
     })
     </script>
